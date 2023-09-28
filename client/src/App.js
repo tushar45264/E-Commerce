@@ -7,6 +7,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import DetailView from "./components/details/DetailView";
 import Sucess from "./components/cart/Sucess";
 import Cancel from "./components/cart/Cancel";
+import Footer from "./components/header/footer";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/cancel" element={<Cancel />} />
             </Routes>
             </Box>
+            <Footer />
           </BrowserRouter>
       </ContextProvider>
    

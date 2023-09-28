@@ -7,6 +7,15 @@ import { useDispatch, useSelector } from "react-redux";
 import SliDe from './Slide'
 import MidSlide from './MidSlide'
 import MidSection from './MidSection'
+import FakePro from './FakePro'
+import MenPro from './MenPro'
+import Elect from './Elect'
+import Trend from './Trend'
+import Laptop from './Laptop'
+import Perfume from './Perfume'
+import Groc from './Groc'
+import Skin from './Skin'
+import HomeDeco from './HomeDeco'
 
 const Home = () => {
   const { products } = useSelector(state=>state.getProducts);
@@ -22,15 +31,21 @@ const Home = () => {
       <Container>
       <Banner />
       <MidSlide products={products} title="Deal of the Day" timer={true}/>
-      <SliDe products={products} title="Recommended for You" timer={false}/>
+      <Elect />
       <MidSection />
-      <SliDe products={products} title="Trending offers" timer={false}/>
-      <SliDe products={products} title="Nex-Change's Special" timer={false}/>
+      <FakePro />
+      <Perfume />
+      <Skin />
+      {/* <SliDe products={products} title="Nex-Change's Special" timer={false}/>
       <SliDe products={products} title="Discounts of the Year" timer={false}/>
       <SliDe products={products} title="Top Selections" timer={false}/>
       <SliDe products={products} title="season's top picks" timer={false}/>
-      <SliDe products={products} title="Home Essentials" timer={false}/>
-
+      <SliDe products={products} title="Home Essentials" timer={false}/> */}
+      <Trend />
+      <Laptop />
+      <HomeDeco />
+      <Groc />
+      <MenPro />
       </Container>
     </>
   )

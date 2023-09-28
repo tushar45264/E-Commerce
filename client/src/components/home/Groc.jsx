@@ -1,13 +1,12 @@
-import { Box, Typography,Button,Divider, styled } from '@mui/material';
+import React,{useState,useEffect} from 'react'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import Countdown from 'react-countdown';
-import { Link } from 'react-router-dom';
+import { Box, Typography,Button,Divider, styled } from '@mui/material';
 
 const responsive = { 
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 5
+      items: 4  
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -19,23 +18,20 @@ const responsive = {
     }
   };
 
-const SliDe = ({products,title,timer})=>{
-    const timerURL = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/timer_a73398.svg';
-
-    const renderer = ({ hours, minutes, seconds }) => {
-        return <Box variant ='span'>{hours}:{minutes}:{seconds} Left</Box>;
-    }
+const Groc = () => {
+    const [products,setProducts] = useState([]);
+    useEffect(()=>{
+        // fetch(`https://fakestoreapi.com/products/category/groceries`)
+        //     .then(res=>res.json())
+        //     .then(json=>setProducts(json))
+            fetch('https://dummyjson.com/products/category/groceries')
+            .then(res=> res.json())
+            .then(json=>setProducts(json.products));
+    },[])
     return (
         <Component>
             <Deal>
-                <DealText>{title}</DealText>
-                {
-                    timer && 
-                    <Timer>
-                <img src={timerURL} alt='timer' style={{width: 24}} />
-                <Countdown date={Date.now() + 5.04e+7} renderer={renderer}/>
-                </Timer>
-                }
+                <DealText>Groceries</DealText>
                 <ViewAllButton variant='contained' style={{marginLeft: 'auto', backgroundColor: '#394867', color: '#fff'}}>View All</ViewAllButton>
             </Deal>
             <Divider />
@@ -52,14 +48,14 @@ const SliDe = ({products,title,timer})=>{
               itemClass="carousel-item-padding-40-px"
         >
             {products.map(product=>(
-                <Link to={`product/${product.id}`} style={{textDecoration:'none', color:'inherit'}}>
+    
                 <Box textAlign={'center'} style={{padding : '25px 15px'}}>
-                <Image src={product.url} alt='products'/>
-                <Text style={{fontWeight:600 ,color:'212121'}}>{product.title.shortTitle}</Text>
-                <Text style={{color:'green'}}>{product.discount}</Text>
-                <Text style={{color:'212121', opacity:'.6'}}>{product.tagline}</Text>
+                <Image src={product.images[0]} alt='products'/>
+                <Text style={{fontWeight:600 ,color:'212121'}}>{product.title}</Text>
+                <Text style={{color:'green'}}>${product.price}</Text>
+                <Text style={{color:'212121', opacity:'.6'}}>{product.decription}</Text>
                 </Box>
-                </Link>
+                
             ))}
         </Carousel>
         </Component>
@@ -107,4 +103,5 @@ const Text =styled(Typography)`
     font-size:14px;
     margin-top: 5px;
     `;
-export default SliDe;
+
+export default Groc
