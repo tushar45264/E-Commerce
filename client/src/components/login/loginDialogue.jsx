@@ -4,7 +4,7 @@ import { useState, useContext} from 'react';
 import { LoginContext } from '../../context/dataProvider.jsx';
 import {Box, TextField, Button, Typography, styled} from "@mui/material";
 import { authenticateSignup, authenticateLogin } from '../../service/api.js';
-import useStyles from './styles.js';
+// import useStyles from './styles.js';
 
 const AccountInitials={
     login :{
@@ -34,7 +34,7 @@ const LoginDialogue = ({open, setOpen}) => {
     const {account, setAccount} = useContext(LoginContext);
     const [log,setLog]= useState(LogInitials);
     const [error, setError] = useState(false);
-    const classes = useStyles();
+    // const classes = useStyles();
 
     const toggleAccount = () => {
         setLogin(AccountInitials.signup);

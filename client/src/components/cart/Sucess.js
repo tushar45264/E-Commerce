@@ -17,7 +17,7 @@ const Sucess = () => {
   useEffect(() => {
     const postOrder = async () => {
       try {
-        const response = await axios.post('http://localhost:8000/store-order', body);
+        const response = await axios.post('https://e-commerce-h20n.onrender.com/store-order', body);
         if (response.status === 201) {
           console.log('Order stored successfully');
           localStorage.removeItem('cart');
