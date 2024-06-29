@@ -12,7 +12,7 @@ import {
     DFETCH_PRODUCTS_FAILURE,
   } from '../constants/productsConstant';
 
-const URL = 'http://localhost:8000';
+const URL = 'https://e-commerce-h20n.onrender.com';
 
 export const getProducts =()=> async(dispatch)=>{
     try {

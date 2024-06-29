@@ -9,7 +9,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchOrderHistory = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/store-order/${userId}`);
+        const response = await axios.get(`https://e-commerce-h20n.onrender.com/store-order/${userId}`);
         setOrders(response.data.data); // Assuming response.data contains the 'data' array with orders
       } catch (error) {
         console.error('Error fetching order history:', error);
