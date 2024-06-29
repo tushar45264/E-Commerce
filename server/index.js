@@ -45,8 +45,8 @@ app.post('/create-checkout-session', async (req, res) => {
               message: 'We\'ll email you instructions on how to get started.',
             },
           },
-        success_url: 'http://localhost:3000/success',
-        cancel_url: 'http://localhost:3000/cancel',
+        success_url: 'https://nex-change-iota.vercel.app/success',
+        cancel_url: 'https://nex-change-iota.vercel.app/cancel',
     });
     res.json({ id: session.id });
 });
