@@ -16,12 +16,12 @@ const AccountInitials={
 };
 
 const SignupInitials={
-    firstname: '',
-    lastname: '',
+    name: '',
     username: '',
     email: '',
     password: '',
     phone: '',
+    address: '',
 }
 
 const LogInitials={
@@ -54,7 +54,7 @@ const LoginDialogue = ({open, setOpen}) => {
       let response =  await authenticateSignup(signUp);
       if(!response) return;
         handleClose();
-        setAccount(signUp.firstname);
+        setAccount('');
     }
 
     const onValueChange = (e) => {
@@ -100,19 +100,19 @@ const LoginDialogue = ({open, setOpen}) => {
                     <Test>By continuing, you agree to Nex-Change's Terms of Use and Privacy Policy.</Test>
                     <LoginButton onClick={()=>LoginUser()}>Login</LoginButton>
                     <Typography style={{textAlign:'center'}}>OR</Typography>
-                    <SignButton>Request OTP</SignButton>
+                    <SignButton>Signup</SignButton>
                     <NewToFlipkart onClick={()=> toggleAccount()}>New to Nex-Change? Create an account</NewToFlipkart>
                 </Wrapper>
                 : 
                 <Wrapper>
                     <LogTp>Nex-Change</LogTp>
-                    <TextField variant = "standard" onChange={(e)=>{onInputChange(e)}} name='firstname' label="Enter FirstName"></TextField>
-                    <TextField variant = "standard" onChange={(e)=>{onInputChange(e)}} name='lastname' label="Enter LastName"></TextField>
+                    <TextField variant = "standard" onChange={(e)=>{onInputChange(e)}} name='name' label="Enter Name"></TextField>
                     <TextField variant = "standard" onChange={(e)=>{onInputChange(e)}} name='username' label="Enter UserName"></TextField>
                     <TextField variant = "standard" onChange={(e)=>{onInputChange(e)}} name='email' label="Enter Email"></TextField>
                     <TextField variant = "standard" onChange={(e)=>{onInputChange(e)}} name='password' label="Enter Password"></TextField>
                     <TextField variant = "standard" onChange={(e)=>{onInputChange(e)}} name='phone' label="Enter Phone"></TextField>
-                    <LoginButton onClick={()=>{signupUser()}}>Request OTP</LoginButton>
+                    <TextField variant = "standard" onChange={(e)=>{onInputChange(e)}} name='address' label="Enter address"></TextField>
+                    <LoginButton onClick={()=>{signupUser()}}>Sign Up</LoginButton>
                 </Wrapper>
                 }
                 </Box>

@@ -29,7 +29,7 @@ const TotalView = ({cartI}) => {
               <Price component='span'>₹{price}</Price>
             </Typography>
             <Typography>Discount
-              <Price component='span'>-₹{discount}</Price>
+              <Price component='span'>-₹{discount.toFixed(2)}</Price>
             </Typography>
             <Typography>Delivery Charges
               <Price component='span'>₹40</Price>
@@ -37,7 +37,7 @@ const TotalView = ({cartI}) => {
             <Typography variant='h6'>Total Amount
               <Price component='span'>₹{price-discount+40}</Price>
             </Typography>
-            <Discount>You will save ₹{discount-40} on this order </Discount>
+            <Discount>You will save ₹{discount.toFixed(2)-40} on this order </Discount>
       </Container>
     </Box>
   )

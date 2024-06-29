@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
-
+import dotenv from "dotenv";
+dotenv.config()
 export const connection = async(userName,password)=>{
-    const URL=`mongodb+srv://${userName}:${password}@cluster0.g3pu0lj.mongodb.net/PROJECT0?retryWrites=true&w=majority`;
+    const URL = process.env.MONGO_URL;
+    
     try {
-       await mongoose.connect(URL,{useUnifiedTopology:true, useNewurlParser:true})
+       await mongoose.connect(URL,{useUnifiedTopology:true, useNewUrlParser:true})
        console.log("Database connected successfully");
     } catch (error){
         console.log("error",error.message);

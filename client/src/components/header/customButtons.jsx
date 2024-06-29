@@ -6,22 +6,33 @@ import { LoginContext } from '../../context/dataProvider.jsx';
 import { useContext} from 'react';
 import { useState} from 'react';
 import Profile from './Profile.jsx';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 const CustomButtons = () => {
+  const navigate = useNavigate();
   const {cartI} = useSelector(state => state.cart);
   const [open, setOpen] = useState(false);
+  const user=JSON.parse(localStorage.getItem('User'))?.username;
   const {account,setAccount} = useContext(LoginContext);
+  const handleLogout=()=>{
+    localStorage.removeItem('User');
+    localStorage.removeItem('cart');
+    navigate('/');
+  }
   const handleClickOpen = () => {
     setOpen(true);
   };
   return (
     <CusB>
     {
-        account ? <Profile account = {account} setAccount={setAccount} /> :
+        user ? <h1 style={{marginLeft : 10}}>{user}</h1> :
         <ButT variant='contained' onClick={()=>handleClickOpen()}>Login</ButT>
     }
-        <Typography style={{marginTop : 3, width: 135}}>Become a Seller</Typography>
+        {user ? 
+        <Link to='/dashboard'>
+        <Typography style={{ textDecoration: 'none', color: 'white', marginTop: 3, width: 100 }}>Dashboard</Typography>
+        </Link>
+        :<Typography style={{marginTop : 3, width: 135}}>Become a Seller</Typography> }
         <Typography style={{marginTop : 3}}>More</Typography>
           <Link to={'/cart'} style={{textDecoration:'none' , color:'inherit'}}>
           <Box style={{display : 'flex', marginTop: 3}}>
@@ -32,6 +43,11 @@ const CustomButtons = () => {
         </Box>
           </Link>
         <LoginDialogue open= {open} setOpen={setOpen}/>
+        {
+          user?<ButT variant='contained' onClick={handleLogout}>Logout</ButT>:
+          <></>
+        }
+        
     </CusB>
   )
 }

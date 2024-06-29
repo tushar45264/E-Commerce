@@ -1,6 +1,8 @@
 import React,{useState,useEffect} from 'react'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { Box, Typography,Button,Divider, styled } from '@mui/material';
 
 const responsive = { 
@@ -19,7 +21,13 @@ const responsive = {
   };
 
 const Elect = () => {
-    const [products,setProducts] = useState([]);
+    // const { products } = useSelector(state=>state.getProducts);
+    // const dispatch = useDispatch();
+
+    // useEffect(() => {
+    //     dispatch(getProducts())
+    // },[dispatch])
+        const [products,setProducts] = useState([]);
     useEffect(()=>{
         fetch(`https://fakestoreapi.com/products/category/electronics`)
             .then(res=>res.json())
@@ -48,14 +56,14 @@ const Elect = () => {
               itemClass="carousel-item-padding-40-px"
         >
             {products.map(product=>(
-    
+                <Link to={`product2/${product.id}`} style={{textDecoration:'none', color:'inherit'}}>
                 <Box textAlign={'center'} style={{padding : '25px 15px'}}>
                 <Image src={product.image} alt='products'/>
                 <Text style={{fontWeight:600 ,color:'212121'}}>{product.title}</Text>
                 <Text style={{color:'green'}}>${product.price}</Text>
                 <Text style={{color:'212121', opacity:'.6'}}>{product.decription}</Text>
                 </Box>
-                
+                </Link>
             ))}
         </Carousel>
         </Component>

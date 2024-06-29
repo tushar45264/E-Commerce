@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { addToCart } from '../../redux/actions/cartAction'
 import { loadStripe } from '@stripe/stripe-js';
+import toast from 'react-hot-toast';
 const ActionItem = ({product}) => {
     console.log(product);
     const navigate=useNavigate();
@@ -14,10 +15,22 @@ const ActionItem = ({product}) => {
     const [quantity,setQuantity]=useState(1);
     const {id} = product;
     const addItemToCart =()=>{
+        const user=JSON.parse(localStorage.getItem('User'));
+        if(!user) {
+            toast('Please login to continue')
+            navigate('/');
+            return;
+        }
         dispatch(addToCart(id, quantity));
         navigate('/cart');
     }
     const BuyNow=async()=>{
+      const user=JSON.parse(localStorage.getItem('User'));
+        if(!user) {
+          toast('Please login to continue')
+            navigate('/');
+            return;
+        }
         const stripe = await loadStripe('pk_test_51NmJMjSHkZOP0UbjKG9TyfhpXCUA7iKLYwyt8tKsaRtF3zY4Tu1lVNLKWa0M1SPohSr1QUOtnYapxEp2BVlsiSvQ00xxSPz3zQ');
     
         const body ={
@@ -51,7 +64,7 @@ const ActionItem = ({product}) => {
         <StyledButton variant="contained" onClick={()=>addItemToCart()} style={{backgroundColor:'#ff9f00', marginRight:10}}>
         <ShoppingCartIcon style={{color:'white'}}/>
         Add to Cart</StyledButton>
-        <StyledButton variant="contained" style={{background:'#fb541b'}} onClick={()=>BuyNow()}>
+        <StyledButton variant="contained" style={{background:'#fb541b'}} onClick={()=>addItemToCart()}>
         <FlashOnIcon style={{color:'white'}}/>
         Buy Now</StyledButton>
     </LeftWrapper>

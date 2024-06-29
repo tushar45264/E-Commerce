@@ -7,45 +7,32 @@ import { useDispatch, useSelector } from "react-redux";
 import SliDe from './Slide'
 import MidSlide from './MidSlide'
 import MidSection from './MidSection'
-import FakePro from './FakePro'
-import MenPro from './MenPro'
-import Elect from './Elect'
-import Trend from './Trend'
-import Laptop from './Laptop'
-import Perfume from './Perfume'
-import Groc from './Groc'
-import Skin from './Skin'
-import HomeDeco from './HomeDeco'
 
 const Home = () => {
   const { products } = useSelector(state=>state.getProducts);
-  console.log(products);
+  console.log(products)
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getProducts())
   },[dispatch])
+
+  const getProductsByCategory = (category) => {
+    return products.filter(product => product.category === category);
+  };
   return (
     <> 
       <NavBar />
       <Container>
       <Banner />
       <MidSlide products={products} title="Deal of the Day" timer={true}/>
-      <Elect />
       <MidSection />
-      <FakePro />
-      <Perfume />
-      <Skin />
-      {/* <SliDe products={products} title="Nex-Change's Special" timer={false}/>
-      <SliDe products={products} title="Discounts of the Year" timer={false}/>
-      <SliDe products={products} title="Top Selections" timer={false}/>
-      <SliDe products={products} title="season's top picks" timer={false}/>
-      <SliDe products={products} title="Home Essentials" timer={false}/> */}
-      <Trend />
-      <Laptop />
-      <HomeDeco />
-      <Groc />
-      <MenPro />
+      <SliDe products={getProductsByCategory('Furniture')} title="Home Essentials" timer={false}/>
+      <SliDe products={getProductsByCategory("Electronics")} title="Electronics" timer={false}/>
+      <SliDe products={getProductsByCategory('Clothing')} title="Clothing" timer={false}/>
+      <SliDe products={getProductsByCategory('Beauty')} title="Beauty" timer={false}/>
+      <SliDe products={getProductsByCategory("Fragrances")} title="Fragrances" timer={false}/>
+      <SliDe products={getProductsByCategory('Jewellery')} title="Jewellery" timer={false}/>
       </Container>
     </>
   )

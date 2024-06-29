@@ -3,6 +3,7 @@ import React from 'react'
 import fail from '../../images/fail.jpg'
 import { Link } from 'react-router-dom'
 const Cancel = () => {
+  localStorage.removeItem('cart');
   return (
     <Component>
       <Container>

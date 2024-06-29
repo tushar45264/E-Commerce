@@ -1,13 +1,7 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-    firstname: {
-        type: String,
-        required: true,
-        trim: true,
-        min: 5,
-        max: 20
-    }, lastname: {
+    name: {
         type: String,
         required: true,
         trim: true,
@@ -32,9 +26,12 @@ const userSchema = new mongoose.Schema({
     }, phone :{
         type: String,
         required: true,
+    },address:{
+        type: String,
+        required: true,
     }
 });
 
-    const User = mongoose.model("users", userSchema);
+const User = mongoose.model("users", userSchema);
 
 export default User;

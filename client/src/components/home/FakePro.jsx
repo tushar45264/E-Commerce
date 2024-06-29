@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import Carousel from 'react-multi-carousel';
+import {Link} from 'react-router-dom';
 import 'react-multi-carousel/lib/styles.css';
 import { Box, Typography,Button,Divider, styled } from '@mui/material';
 
@@ -24,9 +25,6 @@ const FakePro = () => {
         fetch(`https://fakestoreapi.com/products/category/women's clothing`)
             .then(res=>res.json())
             .then(json=>setProducts(json))
-            // fetch('https://dummyjson.com/products')
-            // .then(res=> res.json())
-            // .then(json=>setProducts(json.products));
     },[])
     return (
         <Component>
@@ -48,14 +46,14 @@ const FakePro = () => {
               itemClass="carousel-item-padding-40-px"
         >
             {products.map(product=>(
-    
+                <Link to={`product2/${product.id}`} style={{textDecoration:'none', color:'inherit'}}>
                 <Box textAlign={'center'} style={{padding : '25px 15px'}}>
                 <Image src={product.image} alt='products'/>
                 <Text style={{fontWeight:600 ,color:'212121'}}>{product.title}</Text>
                 <Text style={{color:'green'}}>${product.price}</Text>
                 <Text style={{color:'212121', opacity:'.6'}}>{product.decription}</Text>
                 </Box>
-                
+                </Link>
             ))}
         </Carousel>
         </Component>

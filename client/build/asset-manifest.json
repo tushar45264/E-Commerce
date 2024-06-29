@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.ef9e0acd.css",
+    "main.js": "/static/js/main.58033906.js",
+    "static/js/787.c4e7f8f9.chunk.js": "/static/js/787.c4e7f8f9.chunk.js",
+    "static/media/fail.jpg": "/static/media/fail.ae16af3ea3947ef098bc.jpg",
+    "static/media/4b.png": "/static/media/4b.70f10f0a3c9729bd595f.png",
+    "static/media/2b.png": "/static/media/2b.53e39bf0b7f1e18c4413.png",
+    "static/media/s.jpg": "/static/media/s.89d855af63e5815b32d7.jpg",
+    "static/media/1b.png": "/static/media/1b.82f076452aa6c013eeae.png",
+    "static/media/3b.jpg": "/static/media/3b.3b21a94054771857fccd.jpg",
+    "static/media/coin.png": "/static/media/coin.591002a18676686b2b55.png",
+    "static/media/l.png": "/static/media/l.76241701a00d47da33d9.png",
+    "static/media/logo.png": "/static/media/logo.a071bfddaf21300e6546.png",
+    "static/media/revicons.eot": "/static/media/revicons.a77de540a38981833f9e.eot",
+    "static/media/revicons.ttf": "/static/media/revicons.57fd05d4ae650374c8de.ttf",
+    "static/media/revicons.woff": "/static/media/revicons.e8746a624ed098489406.woff",
+    "index.html": "/index.html",
+    "main.ef9e0acd.css.map": "/static/css/main.ef9e0acd.css.map",
+    "main.58033906.js.map": "/static/js/main.58033906.js.map",
+    "787.c4e7f8f9.chunk.js.map": "/static/js/787.c4e7f8f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ef9e0acd.css",
+    "static/js/main.58033906.js"
+  ]
+}

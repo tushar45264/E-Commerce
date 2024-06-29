@@ -1,13 +1,13 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import { connection } from './database/db.js';
-import DefaultData from './default.js';
 import router from './routes/route.js';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import stripe from 'stripe';
 
-const stripeInstance = stripe('sk_test_51NmJMjSHkZOP0UbjMPA6pFzZL8BdD8XhdDqCQ2XQUlph10IWjLbNMv0rMJtoHrT0Ces1vH4lGnkQYN2pc1oHPY5G0063k240R5');
+dotenv.config();
+const stripeInstance = stripe(process.env.STRIPE_SECRET_KEY);
 
 const app =express();
 
@@ -17,17 +17,17 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use('/',router);
 
-//payment api
+
 app.post('/create-checkout-session', async (req, res) => {
     const {products} = req.body;
-    console.log(products);
+    // console.log(products);
     const lineItems = products.map((item) => ({
         price_data:{
             currency: 'inr',
             product_data: {
                 name: item.title.longTitle,
             },
-            unit_amount: ((item.price.cost+40)*100),
+            unit_amount: (Math.round(item.price.cost)*100),
         },  quantity: 1,
     }));
     const session = await stripeInstance.checkout.sessions.create({
@@ -51,14 +51,15 @@ app.post('/create-checkout-session', async (req, res) => {
     res.json({ id: session.id });
 });
 
-dotenv.config();
+
 
 const userName= process.env.DB_USERNAME;
 const password= process.env.DB_PASSWORD;
 connection(userName,password);
 const PORT = 8000;
+
+
+
 app.listen(PORT, ()=>{
     console.log(`Server is running on ${PORT}`);
 })
-
-DefaultData();

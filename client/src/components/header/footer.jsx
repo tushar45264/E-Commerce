@@ -25,7 +25,7 @@ export default function Footer() {
               About Us
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              We are XYZ company, dedicated to providing the best service to our
+              Nex-Change Ecommerce company, dedicated to providing the best service to our
               customers.
             </Typography>
           </Grid>
@@ -66,7 +66,7 @@ export default function Footer() {
           <Typography variant="body2" color="text.secondary" align="center">
             {"Copyright © "}
             <Link color="inherit" href="https://your-website.com/">
-              Your Website
+              Nex-Change
             </Link>{" "}
             {new Date().getFullYear()}
             {"."}

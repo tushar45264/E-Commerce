@@ -7,8 +7,11 @@ import EmptyCart from './EmptyCart'
 import {loadStripe} from '@stripe/stripe-js/pure';
 const Cart = () => {
   const {cartI} = useSelector(state => state.cart)
-  console.log(cartI);
+  if(cartI){
+    localStorage.setItem('cart', JSON.stringify(cartI));
+  }
   const makePayment = async() => {
+    console.log(process.env.STRIPE_SECRET_KEY )
     const stripe = await loadStripe('pk_test_51NmJMjSHkZOP0UbjKG9TyfhpXCUA7iKLYwyt8tKsaRtF3zY4Tu1lVNLKWa0M1SPohSr1QUOtnYapxEp2BVlsiSvQ00xxSPz3zQ');
     
     const body ={

@@ -1,8 +1,35 @@
-import React from 'react'
+import React ,{useEffect}from 'react'
 import  {Typography,Box,styled} from '@mui/material'
 import S from '../../images/s.jpg'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+
+import axios from 'axios'
+
 const Sucess = () => {
+  const navigate = useNavigate();
+  const user=JSON.parse(localStorage.getItem('User'))?._id;
+  const cartI=JSON.parse(localStorage.getItem('cart'));
+  const body = {
+    userId: user,
+    products: cartI,
+  };
+ 
+  useEffect(() => {
+    const postOrder = async () => {
+      try {
+        const response = await axios.post('http://localhost:8000/store-order', body);
+        if (response.status === 201) {
+          console.log('Order stored successfully');
+          localStorage.removeItem('cart');
+          navigate('/');
+        }
+      } catch (error) {
+        console.error('Error storing order:', error);
+      }
+    };
+
+    postOrder();
+  }, [body, navigate]);
   return (
     <Component>
       <Container>
